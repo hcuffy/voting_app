@@ -8,7 +8,7 @@
     "yarn": "1.1.0"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "deploy": "git push heroku master"
   },
   "author": "Henry Cuffy & Stephen Mayeux",
