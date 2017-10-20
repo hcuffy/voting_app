@@ -3,7 +3,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
-
 const routes = require('./routes')
 const app = express()
 
