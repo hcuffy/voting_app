@@ -16,6 +16,9 @@
     </div>
     <div style="text-align : center">
       <h3>Vote on it!</h3>
+      <% for (var i = 0; i < polls.length; i++) { %>
+        <h1><%= polls[i].title  %></h1>
+      <% } %>
     </div>
   </body>
 </html>
