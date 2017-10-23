@@ -1,5 +1,5 @@
 {
-  "name": "voting-boilerplate",
+  "name": "voting_app",
   "version": "1.0.0",
   "description": "Starter for the FCC Voting App, including work by Henry Cuffy",
   "main": "server.js",

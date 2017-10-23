@@ -3,16 +3,23 @@ const Poll = require('../models/poll')
 exports.getMyPolls = (req, res, next) => {
   Poll.find({}, (err, polls) => {
     if (err) return next(err)
-      res.render('mypolls', { polls })
+    res.render('mypolls', {
+      polls
+    })
   })
 }
 
 exports.getNewPollForm = (req, res, next) => {
-  const { title } = req.params
+  const {
+    title
+  } = req.params.question
+  const {
+    options
+  } = req.params.option
   const newUserPoll = new Poll({
     title,
     options: [],
-    user: 'Henry',
+    user: ,
     voters: []
   })
 
@@ -23,6 +30,10 @@ exports.getNewPollForm = (req, res, next) => {
 }
 
 exports.getVotingForm = (req, res) => {
-  const { title } = req.params
-  res.render('takepoll', { title })
+  const {
+    title
+  } = req.params
+  res.render('takepoll', {
+    title
+  })
 }

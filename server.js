@@ -6,7 +6,7 @@ const logger = require('morgan')
 const routes = require('./routes')
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/new-voting', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/27017', {
   useMongoClient: true
 })
 
