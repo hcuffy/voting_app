@@ -3,10 +3,10 @@ const Schema = mongoose.Schema
 
 const PollSchema = new Schema({
   title: String,
-  options: Array,
+  options: Object,
   user: String,
   voters: Array
-}, { timestamps: true })
+}, {timestamps: true})
 
 const ModelClass = mongoose.model('poll', PollSchema)
 module.exports = ModelClass

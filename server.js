@@ -6,14 +6,13 @@ const logger = require('morgan')
 const routes = require('./routes')
 const app = express()
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/27017', {
-  useMongoClient: true
-})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/voting')
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json('*/*'))
 app.use(logger('combined'))
 
 app.use('/', routes)

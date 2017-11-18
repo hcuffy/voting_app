@@ -6,7 +6,7 @@
   <script>
     $(document).ready(function() {
       $('.choice_btn').click(function(e) {
-        $("#options").append('<input type="text" placeholder="Additional Option" name="option">')
+        $("#options").append('<input type="text" placeholder="Additional Option" name="new_option">')
       });
     });
   </script>
@@ -19,24 +19,23 @@
 <body>
   <div class="dashboard">
     <h1>DASHBOARD</h1>
-    <p1>Either create a new poll or check your polls</p1>
+    <p1>Edit the poll</p1>
     <button class="btn_green" type="button">New Poll</button>
     <button class="btn_blue" type="button">My Polls</button>
   </div>
   <div style="text-align : center">
-    <h2>Create A New Poll</h2>
+    <h2>Add a new option</h2>
     <h3>Question:</h3>
-    <form action="/polls/newpoll" method="post">
-      <input type="text" placeholder="Which pet do you prefer?" name="title" required>
+    <form action="/polls/editpoll/<%= id %>" method="post">
+      <input type="text"  value="<%= title %>" name="title" readonly>
       <h3>Choices:</h3>
       <div id="options">
-        <input type="text" placeholder="A Dog" name="option" required>
-        <input type="text" placeholder="A Cat" name="option" required>
-        <!-- <input type="text" placeholder="A Dog" name="option1">
-        <input type="text" placeholder="A Cat" name="option2"> -->
+          <% for (var key in options) { %>
+           <input type=text value="<%= key %>" name="<%= 'option'  %>" readonly>
+        <% } %>
       </div>
       <button type="button" class="choice_btn">New Option</button>
-      <button type="submit" id="submit_btn">Submit</button>
+      <button type="submit" id="submit_btn">Save</button>
     </form>
   </div>
 </body>

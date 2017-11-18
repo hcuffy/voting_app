@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<title></title>
-  	<link href="/main.css" rel="stylesheet" type="text/css">
-  </head>
-  <nav>
-  	<p style = "margin-left : 8px">VOTE ON IT</p>
-  </nav>
-  <body>
-  	<div class="dashboard">
-  		<h1>DASHBOARD for <%= title %></h1>
-  		<p1>Either create a new poll or check your polls</p1>
-  		<button class="btn_green" type="button" onclick="location.href = 'https://votingapp-hcuffy.c9users.io/public/newpoll.html'">New Poll</button>
-  		<button class="btn" type="button" onclick="location.href = 'https://votingapp-hcuffy.c9users.io/public/mypolls.html'">My Polls</button>
-  	</div>
-  	<div style = "text-align : center"></div>
-  </body>
+
+<head>
+  <title></title>
+  <link href="/main.css" rel="stylesheet" type="text/css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+</head>
+<nav>
+  <p style="margin-left : 8px">VOTE ON IT</p>
+</nav>
+
+<body>
+  <div class="dashboard">
+    <h3>Please Vote</h3>
+    <h1><%= title %></h1>
+  </div>
+  <div style="margin: 0 auto; width: 300px;">
+    <form action="/polls/takepoll/<%= id %>" method="post">
+      <% for (var key in options) { %>
+        <label for="<%= key %>"><input type="radio" name="choice" value="<%= key %>" /> <%= key %></label>
+      <% } %>
+      <button type="submit" id="vote_btn">Vote</button>
+    </form>
+  </div>
+  <script>
+         function singlePoll(id){
+           $.ajax({
+                  url: '/polls/singlepoll/' + id,
+                  type: 'GET',
+                  success: function (result) {
+                  document.location.href = '/polls/singlepoll/' + id;
+                  console.log(result)
+                  },
+                  error: function () {
+                    alert("Cannot find poll. Something went wrong");
+                  }
+              });
+          }
+  </script>
+  <button onclick="singlePoll('<%= id %>')" class="choice_btn">Edit Poll</button>
+</body>
+
 </html>
