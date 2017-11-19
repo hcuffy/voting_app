@@ -1,5 +1,5 @@
 const Poll = require('../models/poll')
-const Chart = require('chart.js')
+
 exports.getMyPolls = (req, res, next) => {
   Poll.find({}, (err, polls) => {
     if (err)
@@ -45,12 +45,49 @@ exports.updatePoll = (req, res, next) => {
   const { choice } = req.body;
   const { id } = req.params
 
-  Poll.findByIdAndUpdate(id, { $inc: { [`options.${choice}`]: 1 } }, { new: true }, function(err, data) {
+  Poll.findByIdAndUpdate(id, { $inc: { [`options.${choice}`]: 1 } }, { new: true }, function(err, poll) {
     if (err) {
       console.log('Database Error', err)
       return next(err)
     }
-    res.send(data)
+    const { title, options } = poll
+    let options_label = [], options_vote = [];
+
+      for(var key in options){
+         options_label.push(key);
+         options_vote.push(options[key]);
+      }
+
+    var type = 'bar'
+    var data  = {
+        labels: options_label,
+        datasets: [{
+            label: title,
+            data: options_vote,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 3
+        }]
+    }
+    var chart_options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:false
+                }
+            }]
+        }
+    }
+        res.render('chart', {type, data, chart_options, id})
   });
 }
 
@@ -97,37 +134,4 @@ exports.editPoll = (req, res, next) => {
         res.render('takepoll', { title, options, id })
       })
 
-}
-////
-exports.getChart = (req, res, next) => {
-
-let myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: ["Red", "Blue"],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
-  });
-  res.render('chart',myChart)
 }

@@ -11,6 +11,6 @@ router.post("/takepoll/:id", pollsController.updatePoll)
 router.delete('/deletepoll/:id', pollsController.deletePoll)
 router.post('/editpoll/:id', pollsController.editPoll)
 router.get('/singlepoll/:id', pollsController.getSinglePoll)
-router.get('/showchart/', pollsController.getChart)
+// router.get('/showchart/', pollsController.getChart)
 
 module.exports = router

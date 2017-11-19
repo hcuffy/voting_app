@@ -12,18 +12,38 @@
 </nav>
 
 <body>
-
   <div class="dashboard">
     <h3>Current Vote Results For:</h3>
-    <h1><%= title %></h1>
+
+    <h1></h1>
   </div>
   <div style="margin: 0 auto; width: 600px;">
-  <canvas id="myChart" width="500" height="500"></canvas>
+    <canvas id="myChart" width="400" height="400"></canvas>
 
-
+     <script>
+          var ctx = document.getElementById("myChart");
+          var myChart = new Chart(ctx, {
+              type: <%- JSON.stringify(type) %>,
+              data: <%- JSON.stringify(data) %>,
+              options: <%- JSON.stringify(chart_options) %>
+          });
+    </script>
   </div>
-
-  <button class="choice_btn">Back to Poll</button>
+  <script>
+         function backtoPoll(id){
+           $.ajax({
+                  url: '/polls/takepoll/' + id,
+                  type: 'POST',
+                  success: function (result) {
+                  document.location.href = '/polls/vote/' + id;
+                  },
+                  error: function () {
+                    alert("Cannot find poll. Something went wrong");
+                  }
+              });
+          }
+  </script>
+  <button onclick="backtoPoll('<%= id %>')"class="choice_btn">Back to Poll</button>
 </body>
 
 </html>
