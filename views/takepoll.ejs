@@ -4,8 +4,6 @@
 <head>
   <title></title>
   <link href="/main.css" rel="stylesheet" type="text/css">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
 </head>
 <nav>
   <p style="margin-left : 8px">VOTE ON IT</p>
@@ -20,25 +18,14 @@
     <form action="/polls/takepoll/<%= id %>" method="post">
       <% for (var key in options) { %>
         <label for="<%= key %>"><input type="radio" name="choice" value="<%= key %>" /> <%= key %></label>
-      <% } %>
-      <button type="submit" id="vote_btn">Vote</button>
+        <% } %>
+          <button type="submit" id="vote_btn">Vote</button>
     </form>
   </div>
-  <script>
-         function singlePoll(id){
-           $.ajax({
-                  url: '/polls/singlepoll/' + id,
-                  type: 'GET',
-                  success: function (result) {
-                  document.location.href = '/polls/singlepoll/' + id;
-                  },
-                  error: function () {
-                    alert("Cannot find poll. Something went wrong");
-                  }
-              });
-          }
-  </script>
-  <button onclick="singlePoll('<%= id %>')" class="choice_btn">Edit Poll</button>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="/main.js"></script>
+  <button class="edit_btn">Edit Poll</button>
+  <script type="text/javascript" src="/main.js"></script>
 </body>
 
 </html>

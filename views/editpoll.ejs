@@ -2,14 +2,7 @@
 <html>
 
 <head>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('.choice_btn').click(function(e) {
-        $("#options").append('<input type="text" placeholder="Additional Option" name="new_option">')
-      });
-    });
-  </script>
+
   <link href="/main.css" rel="stylesheet" type="text/css">
 </head>
 <nav>
@@ -27,17 +20,19 @@
     <h2>Add a new option</h2>
     <h3>Question:</h3>
     <form action="/polls/editpoll/<%= id %>" method="post">
-      <input type="text"  value="<%= title %>" name="title" readonly>
+      <input type="text" value="<%= title %>" name="title" readonly>
       <h3>Choices:</h3>
       <div id="options">
-          <% for (var key in options) { %>
-           <input type=text value="<%= key %>" name="<%= 'option'  %>" readonly>
-        <% } %>
+        <% for (var key in options) { %>
+          <input type=text value="<%= key %>" name="<%= 'option'  %>" readonly>
+          <% } %>
       </div>
       <button type="button" class="choice_btn">New Option</button>
       <button type="submit" id="submit_btn">Save</button>
     </form>
   </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/main.js"></script>
 </body>
 
 </html>

@@ -5,21 +5,21 @@
   <title></title>
   <link href="/main.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-   <script>
-         function callDelete(id){
-           $.ajax({
-                  url: '/polls/deletepoll/' + id,
-                  type: 'DELETE',
-                  success: function (result) {
-                  alert("Item Deleted");
-                  window.location.reload();
-                  },
-                  error: function () {
-                    alert("The item cannot be deleted ath this time.");
-                  }
-              });
-          }
-   </script>
+  <script>
+    function callDelete(id) {
+      $.ajax({
+        url: '/polls/deletepoll/' + id,
+        type: 'DELETE',
+        success: function(result) {
+          alert("Item Deleted");
+          window.location.reload();
+        },
+        error: function() {
+          alert("The item cannot be deleted ath this time.");
+        }
+      });
+    }
+  </script>
 </head>
 <nav>
   <p style="margin-left : 8px">VOTE ON IT</p>
@@ -37,7 +37,8 @@
       <a href="/polls/vote/<%= polls[i]._id %>">
         <%= polls[i].title %>
       </a><button onclick="callDelete('<%= polls[i]._id %>')" class="delete_btn">Delete</button>
-    <% } %>
+      <% } %>
   </div>
 </body>
+
 </html>

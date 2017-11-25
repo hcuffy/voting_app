@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router()
 
 router.use('/polls', require('./polls'))
+router.use('/users', require('./users'))
 
 router.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.render('index')
 })
 
 module.exports = router
