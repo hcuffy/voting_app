@@ -1,8 +1,17 @@
 body {
+  background-color: #4286f4;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   margin: 0;
   padding: 0;
+}
+
+nav {
+  padding: 35px 0 0 10px;
+  background-color: #00d40e;
+  color: block;
+  display: block;
+  height: 100px;
 }
 
 p1 {
@@ -160,4 +169,32 @@ a {
   width: 120px;
   padding: 60px;
   cursor: pointer;
+}
+
+.login_label {
+  padding-top: 20px;
+  border: none;
+  font-size: 1.5em;
+}
+
+.login_text {
+  border: none;
+  color: white;
+  width: auto;
+}
+
+hr {
+  margin: 20px 0 20px 0;
+  border-width: 1px;
+  border-color: black;
+}
+
+.form_elements {
+  width: 300px;
+  margin: auto;
+}
+
+.a_border {
+  border: none;
+  width: 110px;
 }

@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html style=" background-color: #4286f4">
+<html>
 
 <head>
-  <title></title>
+  <title>Registration</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link href="/main.css" rel="stylesheet" type="text/css">
 </head>
 <nav>
-  <p style="margin-left : 8px">VOTE ON IT</p>
+  <p>VOTE ON IT</p>
 </nav>
 
 <body>
-  <div style="text-align : center">
-    <form action="/signup" method="post">
-      <div>
-        <input type="text" placeholder="Username" name="username" required>
-        <input type="password" placeholder="Password" name="password" required>
+  <div class = 'form_elements'>
+    <form action="/signup" method='post'>
+      <div id="credentials">
+        <label class='login_label'>Create an account.</label>
+        <input type='text' placeholder='New username' name='login'>
+        <input type='password' placeholder='New password' name='password'>
       </div>
     </form>
-    <button type="submit">Login</button>
+    <button type='submit'>Sign up</button>
+  </div >
+  <div class = 'form_elements'>
+    <hr>
+    <p>Already have an account? <a class = 'login_text' href='/users/login'>Login</a></p>
+    <p>Return <a class = 'login_text' href='/users/index'>Home</a></p>
   </div>
 </body>
 

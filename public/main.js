@@ -52,3 +52,22 @@ $(document).ready(function() {
     $('#vote_btn').prop('disabled', false);
   });
 })
+
+function callDelete(id) {
+  $.ajax({
+    url: '/polls/deletepoll/' + id,
+    type: 'DELETE',
+    success: function(result) {
+      alert("Item Deleted");
+      window.location.reload();
+    },
+    error: function() {
+      alert("The item cannot be deleted at this time.");
+    }
+  });
+}
+
+$('.delete_btn').click(function() {
+var id = this.id;
+callDelete(id);
+})

@@ -1,12 +1,21 @@
 const mongoose = require('mongoose')
+const bcrypt   = require('bcrypt-nodejs')
 const Schema = mongoose.Schema
 
-const PollSchema = new Schema({
-  title: String,
-  options: Object,
-  user: String,
-  voters: Array
+const UserSchema = new Schema({
+  username: String,
+  password: String
+
 }, {timestamps: true})
 
-const ModelClass = mongoose.model('poll', PollSchema)
+
+UserSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+UserSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
+
+const ModelClass = mongoose.model('user', UserSchema)
 module.exports = ModelClass
