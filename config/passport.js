@@ -22,7 +22,7 @@ module.exports = function(passport) {
     process.nextTick(function() {
 
       User.findOne({
-        'local.name': name
+        username: name
       }, function(err, user) {
         if (err)
           return done(err);
@@ -31,8 +31,8 @@ module.exports = function(passport) {
           return done(null, false, req.flash('signupMessage', 'Email Already Exists.'));
         } else {
           var newUser = new User();
-          newUser.local.email = name;
-          newUser.local.password = newUser.generateHash(password);
+          newUser.username = name;
+          newUser.password = newUser.generateHash(password);
           newUser.save(function(err) {
             if (err)
               return err;

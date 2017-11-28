@@ -18,8 +18,9 @@
     <h3>Select a Poll</h3>
     <% for (var i = 0; i < polls.length; i++) { %>
       <a href="/polls/vote/<%= polls[i]._id %>">
-        <%= polls[i].title %>
-      </a><button id ='<%= polls[i]._id %>' class="delete_btn">Delete</button>
+          <%= polls[i].title %>
+      </a>
+      <button id ='<%= polls[i]._id %>' class="delete_btn">Delete</button>
       <% } %>
   </div>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

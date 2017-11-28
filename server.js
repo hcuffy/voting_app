@@ -21,14 +21,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json('*/*'));
 app.use(logger('combined'));
-app.use(cookieParser());
-app.use(session({ secret: 'voteonitagainagain'}));
+app.use(session({
+  secret: 'voteonitagainagain',
+  saveUninitialized: true,
+  resave:true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser());
 app.use(flash());
 
 
 app.use('/', routes);
+
 const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log('Express server running on port', port)
