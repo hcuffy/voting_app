@@ -27,6 +27,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('*', function(req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
+
 const routes =  require('./routes');
 app.use('/', routes);
 
