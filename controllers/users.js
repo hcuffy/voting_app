@@ -1,23 +1,31 @@
 const express = require('express');
 const app = express();
+const User = require('../models/user')
 
 exports.getIndex = (req, res, next) => {
   res.render('index')
 }
 
 exports.getSignUpForm = (req, res, next) => {
-  res.render('signup', { message: req.flash('signupMessage')})
+  res.render('signup')
 }
 
 exports.getLogin = (req, res, next) => {
-  res.render('login', {message: req.flash('loginMessage')})
+  res.render('login')
 }
 
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
+exports.createNewUser = (req, res, next) => {
+  const {username, password} = req.body
+  const newUser = new User({username, password})
+  newUser.save(function(err) {
+    if (err)
+      return next(err)
+    req.login(newUser, (err) => {
+      if (err)
+        return next(err)
+      res.redirect('/polls/mypolls')
+    })
+  })
 }
 
 exports.getLogout = (req, res, next) => {
@@ -26,6 +34,5 @@ exports.getLogout = (req, res, next) => {
 }
 
 exports.getProfile = (req, res, next) => {
-//, {user : req.user }
   res.render('profile');
 }

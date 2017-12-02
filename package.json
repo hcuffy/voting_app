@@ -1,12 +1,8 @@
 {
   "name": "voting_app",
   "version": "1.0.0",
-  "description": "Starter for the FCC Voting App, including work by Henry Cuffy",
+  "description": "Free Code Camp Voting App",
   "main": "server.js",
-  "engines": {
-    "node": "8.6.0",
-    "yarn": "1.2.1"
-  },
   "scripts": {
     "start": "nodemon server.js",
     "deploy": "git push heroku master"

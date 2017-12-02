@@ -1,28 +1,28 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 const passport = require('passport');
+const usersController = require('../controllers/users');
+const pollsController = require('../controllers/polls');
+require('../config/passport')(passport);
 
-const User = require('../models/user')
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+    return next()
+  res.redirect('/');
+}
 
-const usersController = require('../controllers/users')
+router.get('/', usersController.getIndex);
+router.get('/login', usersController.getLogin);
+router.get('/logout', usersController.getLogout);
+router.get('/signup', usersController.getSignUpForm);
+router.post('/signup', usersController.createNewUser);
 
-router.get('/', usersController.getIndex)
-router.get('/login', usersController.getLogin)
-router.get('/logout', usersController.getLogout)
-router.get('/signup', usersController.getSignUpForm)
-router.get('/profile', usersController.getProfile)
-router.post('/signup', function(req, res, next) {
-  const { username, password } = req.body
+router.post('/signin', passport.authenticate('local', {
+  successRedirect: '/polls/mypolls',
+  failureRedirect: '/users/login'
 
-  const newUser = new User({
-    username,
-    password
-  })
+}));
 
-  newUser.save(function(err) {
-    if (err) return next(err)
-    res.render('newpoll')
-  })
-});
+router.get('/polls/mypolls', isLoggedIn, pollsController.getMyPolls);
 
 module.exports = router

@@ -13,37 +13,22 @@ module.exports = function(passport) {
     });
   });
 
-  passport.use('local-signup', new LocalStrategy({
-    usernameField: 'name',
-    passwordField: 'password',
-    passReqToCallback: true
-  }, function(req, name, password, done) {
+  passport.use(new LocalStrategy(function(username, password, done) {
 
-    process.nextTick(function() {
-
-      User.findOne({
-        username: name
-      }, function(err, user) {
-        if (err)
-          return done(err);
-
-        if (user) {
-          return done(null, false, req.flash('signupMessage', 'Email Already Exists.'));
-        } else {
-          var newUser = new User();
-          newUser.username = name;
-          newUser.password = newUser.generateHash(password);
-          newUser.save(function(err) {
-            if (err)
-              return err;
-            return done(null, newUser);
-          });
-        }
-
-      });
-
+    User.findOne({
+      username: username
+    }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, {message: 'Incorrect username.'});
+      }
+      if (!user.comparePassword(password)) {
+        return done(null, false, {message: 'Incorrect password.'});
+      }
+      return done(null, user);
     });
-
   }));
 
 };
