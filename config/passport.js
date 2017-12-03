@@ -20,10 +20,13 @@ module.exports = function(passport) {
         if (!user) {
           return done(null, false, { message: 'Incorrect username.' });
         }
-        if (!user.comparePassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
+        user.comparePassword(password, function(err, isMatch) {
+          if (err) return done(err);
+          if (!isMatch) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+          return done(null, user);
+        })
       });
     }
   ));
