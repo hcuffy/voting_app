@@ -19,13 +19,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json('*/*'));
 app.use(logger('combined'));
-app.use(session({
-  secret: 'voteonitagainagain',
-  saveUninitialized: true,
-  resave:true
-}));
+app.use(session({secret: 'voteonitagainagain', saveUninitialized: true, resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('*', function(req, res, next) {
+  res.locals.user = req.user || null;
+
+  next();
+
+});
 
 app.get('*', function(req, res, next) {
   res.locals.user = req.user || null;

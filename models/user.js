@@ -1,12 +1,18 @@
-const mongoose = require('mongoose')
-const bcrypt   = require('bcrypt-nodejs')
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-  username: { type: String, unique: true, lowercase: true },
+  username: {
+    type: String,
+    unique: true,
+    lowercase: true
+  },
   password: String
-}, {timestamps: true})
+}, {timestamps: true});
 
+UserSchema.pre('save', function(next) {
+  const user = this;
 
 // On Save Hook, encrypt password
 UserSchema.pre('save', function(next) {

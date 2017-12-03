@@ -21,7 +21,7 @@ exports.createNewUser = (req, res, next) => {
     if (err) return next(err)
     req.login(newUser, (err) => {
       if (err) return next(err)
-      res.redirect('/users/profile')
+      res.redirect('/polls/mypolls')
     })
   })
 }
@@ -32,6 +32,5 @@ exports.getLogout = (req, res, next) => {
 }
 
 exports.getProfile = (req, res, next) => {
-  console.log('Am I authed?', req.isAuthenticated())
   res.render('profile');
 }
