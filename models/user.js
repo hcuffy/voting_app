@@ -9,10 +9,7 @@ const UserSchema = new Schema({
     lowercase: true
   },
   password: String
-}, {timestamps: true});
-
-UserSchema.pre('save', function(next) {
-  const user = this;
+}, { timestamps: true });
 
 // On Save Hook, encrypt password
 UserSchema.pre('save', function(next) {
@@ -33,7 +30,6 @@ UserSchema.pre('save', function(next) {
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) { return callback(err); }
-
     callback(null, isMatch);
   });
 }
