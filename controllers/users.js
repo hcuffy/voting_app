@@ -15,14 +15,13 @@ exports.getLogin = (req, res, next) => {
 }
 
 exports.createNewUser = (req, res, next) => {
-  const {username, password} = req.body
-  const newUser = new User({username, password})
+  const { username, password } = req.body
+  // TODO: Check if user exists first and then create the account.
+  const newUser = new User({ username, password })
   newUser.save(function(err) {
-    if (err)
-      return next(err)
+    if (err) return next(err)
     req.login(newUser, (err) => {
-      if (err)
-        return next(err)
+      if (err) return next(err)
       res.redirect('/polls/mypolls')
     })
   })

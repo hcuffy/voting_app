@@ -16,13 +16,12 @@ router.get('/login', usersController.getLogin);
 router.get('/logout', usersController.getLogout);
 router.get('/signup', usersController.getSignUpForm);
 router.post('/signup', usersController.createNewUser);
-
+router.get('/profile', isLoggedIn, usersController.getProfile)
 router.post('/signin', passport.authenticate('local', {
   successRedirect: '/polls/mypolls',
   failureRedirect: '/users/login'
 
 }));
-
 router.get('/polls/mypolls', isLoggedIn, pollsController.getMyPolls);
 
 module.exports = router

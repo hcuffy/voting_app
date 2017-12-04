@@ -9,19 +9,18 @@ const UserSchema = new Schema({
     lowercase: true
   },
   password: String
-}, {timestamps: true});
+}, { timestamps: true });
 
+// On Save Hook, encrypt password
 UserSchema.pre('save', function(next) {
   const user = this;
 
   bcrypt.genSalt(10, function(err, salt) {
-    if (err) {
-      return next(err);
-    }
+    if (err) { return next(err); }
+
     bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) {
-        return next(err);
-      }
+      if (err) { return next(err); }
+
       user.password = hash;
       next();
     });
@@ -29,11 +28,9 @@ UserSchema.pre('save', function(next) {
 });
 
 UserSchema.methods.comparePassword = function(candidatePassword, callback) {
-
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-
-    if (err) return callback(err);
-        callback(null, isMatch);
+    if (err) { return callback(err); }
+    callback(null, isMatch);
   });
 }
 

@@ -1,15 +1,16 @@
 const path = require('path');
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const routes = require('./routes');
 const passport = require('passport');
 const session = require('express-session');
 
+const app = express();
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/voting', {useMongoClient: true})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/henry-voting', {
+  useMongoClient: true
+})
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -29,7 +30,12 @@ app.get('*', function(req, res, next) {
 
 });
 
+app.get('*', function(req, res, next) {
+  res.locals.user = req.user || null;
+  next();
+});
 
+const routes =  require('./routes');
 app.use('/', routes);
 
 const port = process.env.PORT || 3000
