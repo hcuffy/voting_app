@@ -124,7 +124,7 @@ button[type=submit]:hover {
   background-color: #05af10;
 }
 
-.choice_btn {
+.choice_btn, .back_btn {
   width: 200px;
   background-color: #cfd2d6;
   color: black;
@@ -137,7 +137,7 @@ button[type=submit]:hover {
   cursor: pointer;
 }
 
-.edit_btn {
+.edit_btn, .share_btn {
   width: 200px;
   background-color: #cfd2d6;
   color: black;

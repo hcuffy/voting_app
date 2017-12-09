@@ -4,9 +4,9 @@ exports.getMyPolls = (req, res, next) => {
   Poll.find({}, (err, polls) => {
     if (err)
       return next(err)
+
     res.render('mypolls', {polls})
   })
-
 }
 
 exports.addNewPoll = (req, res, next) => {

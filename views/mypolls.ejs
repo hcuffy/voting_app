@@ -8,26 +8,32 @@
   <link href="/main.css" rel="stylesheet" type="text/css">
 </head>
 <nav>
-  <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
-  <p style="margin-left : 8px">VOTE ON IT</p>
-  </nav>
+  <% if(user){ %>
+    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+    <% } %>
+      <p style="margin-left : 8px">VOTE ON IT</p>
+</nav>
 
 <body>
   <div class="dashboard">
     <h1>DASHBOARD</h1>
-    <a href="/polls/newpoll" class="a_border"><button class="btn_green" type="button">+ New Poll</button></a>
+    <% if (user) { %>
+      <a href="/polls/newpoll" class="a_border"><button class="btn_green" type="button">+ New Poll</button></a>
+      <% } %>
   </div>
   <div style="margin: 0 auto; width: 455px; position:relative;">
     <h3>Select a Poll</h3>
     <% for (var i = 0; i < polls.length; i++) { %>
-      <a  href="/polls/vote/<%= polls[i]._id %>"><button class="mypolls">
+      <a href="/polls/vote/<%= polls[i]._id %>"><button class="mypolls">
           <%= polls[i].title %>
     </button></a>
-      <button id='<%= polls[i]._id %>' class="delete_btn">Delete</button>
-      <% } %>
+      <% if (user) { %>
+        <button id='<%= polls[i]._id %>' class="delete_btn">Delete</button>
+        <% } %>
+          <% } %>
   </div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/main.js"></script>
 </body>
 
 </html>

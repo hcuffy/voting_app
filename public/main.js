@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  function singlePoll() {
+  $('.edit_btn').click(function singlePoll() {
     var id = location.pathname.split('/')[3]
     $.ajax({
       url: '/polls/singlepoll/' + id,
@@ -12,11 +12,9 @@ $(document).ready(function() {
         alert('Cannot find poll. Something went wrong');
       }
     });
-  }
+  })
 
-  $('.edit_btn').click(singlePoll)
-
-  $('.choice_btn').click(function(e) {
+  $('.choice_btn').click(function() {
     $("#options").append('<input class="newOption" type="text" placeholder="Additional Option" name="new_option">')
   });
 
@@ -30,7 +28,7 @@ $(document).ready(function() {
 
   $('#submit_btn').prop('disabled', true);
 
-  function backtoPoll() {
+  $('#chart_back').click(function backtoPoll() {
     var id = location.pathname.split('/')[3]
     $.ajax({
       url: '/polls/takepoll/' + id,
@@ -42,9 +40,7 @@ $(document).ready(function() {
         alert("Cannot find poll. Something went wrong");
       }
     });
-  }
-
-  $('#chart_back').click(backtoPoll)
+  })
 
   $('#vote_btn').prop('disabled', true);
 
@@ -53,7 +49,8 @@ $(document).ready(function() {
   });
 })
 
-function callDelete(id) {
+$('.delete_btn').click(function() {
+  var id = this.id;
   $.ajax({
     url: '/polls/deletepoll/' + id,
     type: 'DELETE',
@@ -65,9 +62,15 @@ function callDelete(id) {
       alert("The item cannot be deleted at this time.");
     }
   });
-}
+})
 
-$('.delete_btn').click(function() {
-var id = this.id;
-callDelete(id);
+$('.share_btn').click(function() {
+  var urlText = document.createElement("textarea");
+  urlText.style.background = 'transparent';
+  urlText.value = location.href;
+  document.body.appendChild(urlText);
+  urlText.select();
+  document.execCommand('copy');
+  document.body.removeChild(urlText);
+  alert("The poll link was successfully copied!");
 })

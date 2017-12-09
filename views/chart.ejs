@@ -3,9 +3,11 @@
 
 <head>
   <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link href="/main.css" rel="stylesheet" type="text/css">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 </head>
 <nav>
   <p style="margin-left : 8px">VOTE ON IT</p>
@@ -15,9 +17,8 @@
   <div class="dashboard">
     <h3>Current Vote Results For:</h3>
   </div>
-  <div style="margin: 0 auto; width: 600px;">
+  <div style="margin: 0 auto; width: 600px; background: white;">
     <canvas id="myChart" width="400" height="400"></canvas>
-
     <script>
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
@@ -27,7 +28,8 @@
       });
     </script>
   </div>
-  <button id="chart_back" class="choice_btn">Back to Poll</button>
+  <button id="chart_back" class="back_btn">Back to Polls</button>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="/main.js"></script>
 </body>
 

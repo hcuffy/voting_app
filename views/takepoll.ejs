@@ -3,10 +3,16 @@
 
 <head>
   <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link href="/main.css" rel="stylesheet" type="text/css">
 </head>
 <nav>
-  <p style="margin-left : 8px">VOTE ON IT</p>
+  <% if (user) { %>
+    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+    <% } %>
+      <p style="margin-left : 8px">VOTE ON IT</p>
+
 </nav>
 
 <body>
@@ -23,8 +29,8 @@
     </form>
   </div>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="/main.js"></script>
   <button class="edit_btn">Edit Poll</button>
+  <button class="share_btn">Copy & Share <span class="glyphicon glyphicon-share"></span></button>
   <script type="text/javascript" src="/main.js"></script>
 </body>
 

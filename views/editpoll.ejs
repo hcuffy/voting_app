@@ -2,11 +2,15 @@
 <html>
 
 <head>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
   <link href="/main.css" rel="stylesheet" type="text/css">
 </head>
 <nav>
-  <p style="margin-left : 8px">VOTE ON IT</p>
+  <% if (user) { %>
+    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+    <% } %>
+      <p style="margin-left : 8px">VOTE ON IT</p>
 </nav>
 
 <body>
