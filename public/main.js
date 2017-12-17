@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('.edit_btn').click(function singlePoll() {
     var id = location.pathname.split('/')[3]
     $.ajax({
-      url: '/polls/singlepoll/' + id,
+      url: '/polls/newpoll/',
       type: 'GET',
       success: function(result) {
         document.location.href = '/polls/singlepoll/' + id;
@@ -16,7 +16,7 @@ $(document).ready(function() {
 // When the additional option button is clicked, add a new option text field to the list.
   $('.choice_btn').click(function() {
     var newOptionNum = $('.poll-option').length + 1;
-    var newName = "option" + newOptionNum;
+    var newName = 'option' + newOptionNum;
     $("#options").append('<input class="poll-option" type="text" placeholder="Additional Option" name="' + newName + '" />' )
 
     $('#options').off('input', 'input.poll-option', handleInputChange);
@@ -35,21 +35,6 @@ $(document).ready(function() {
   $('#options').on('input', 'input.poll-option', handleInputChange);
 
   $('#submit_btn').prop('disabled', true);
-
-// Take user to the chart after taking a poll.
-  $('#chart_back').click(function backtoPoll() {
-    var id = location.pathname.split('/')[3]
-    $.ajax({
-      url: '/polls/takepoll/' + id,
-      type: 'POST',
-      success: function(result) {
-        document.location.href = '/polls/vote/' + id;
-      },
-      error: function() {
-        alert("Cannot find poll. Something went wrong");
-      }
-    });
-  })
 
   $('#vote_btn').prop('disabled', true);
 

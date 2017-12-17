@@ -22,7 +22,8 @@ exports.addNewPoll = (req, res, next) => {
       return next(err)
   })
   const id = newUserPoll._id;
-  res.render('takepoll', {title, options, id})
+  let fresh_made= true;
+  res.render('takepoll', {title, options, id, fresh_made})
 }
 
 exports.getNewPollForm = (req, res, next) => {
@@ -39,9 +40,11 @@ exports.getVotingForm = (req, res, next) => {
     if (err)
       return (err);
     const {title, options} = poll
-    res.render('takepoll', {title, options, id})
+    let fresh_made= false;
+    res.render('takepoll', {title, options, id, fresh_made})
   })
 }
+
 // Update a polls votes in the DB and display the chart after the user has voted.
 exports.updatePoll = (req, res, next) => {
   const {choice} = req.body;
@@ -150,7 +153,8 @@ exports.updatePoll = (req, res, next) => {
       if (err)
         return (err);
       const {title, options} = poll
-      res.render('takepoll', {title, options, id})
+      let fresh_made= false;
+      res.render('takepoll', {title, options, id, fresh_made})
     })
 
   }

@@ -8,7 +8,7 @@ const session = require('express-session');
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/henry-voting', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/voting', {
   useMongoClient: true
 });
 

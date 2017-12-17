@@ -10,6 +10,9 @@
 
 </head>
 <nav>
+  <% if(user){ %>
+    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+  <% } %>
   <p style="margin-left : 8px">VOTE ON IT</p>
 </nav>
 
@@ -28,9 +31,7 @@
       });
     </script>
   </div>
-  <button id="chart_back" class="back_btn">Back to Polls</button>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/main.js"></script>
+  <a href="/polls/mypolls"><button id="chart_back" class="back_btn" type="button">Back to Polls</button></a>
 </body>
 
 </html>

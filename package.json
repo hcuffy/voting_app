@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "deploy": "git push heroku master"
   },
   "author": "Henry Cuffy & Stephen Mayeux",
   "license": "MIT",
