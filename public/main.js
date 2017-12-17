@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+//Take user to edit poll page. in order to edit a poll.
   $('.edit_btn').click(function singlePoll() {
     var id = location.pathname.split('/')[3]
     $.ajax({
@@ -13,21 +13,30 @@ $(document).ready(function() {
       }
     });
   })
-
+// When the additional option button is clicked, add a new option text field to the list.
   $('.choice_btn').click(function() {
-    $("#options").append('<input class="newOption" type="text" placeholder="Additional Option" name="new_option">')
+    var newOptionNum = $('.poll-option').length + 1;
+    var newName = "option" + newOptionNum;
+    $("#options").append('<input class="poll-option" type="text" placeholder="Additional Option" name="' + newName + '" />' )
+
+    $('#options').off('input', 'input.poll-option', handleInputChange);
+    $('#options').on('input', 'input.poll-option', handleInputChange);
   });
 
-  $('#options').on('input', 'input.newOption', function(e) {
-    if (e.target.value.trim() === '') {
-      $('#submit_btn').prop('disabled', true);
-    } else {
+//Make the submit button on the new poll creation page active only after the fields have been filled.
+  function handleInputChange(e) {
+    if (e.target.value) {
       $('#submit_btn').prop('disabled', false);
+    } else {
+      $('#submit_btn').prop('disabled', true);
     }
-  })
+  }
+
+  $('#options').on('input', 'input.poll-option', handleInputChange);
 
   $('#submit_btn').prop('disabled', true);
 
+// Take user to the chart after taking a poll.
   $('#chart_back').click(function backtoPoll() {
     var id = location.pathname.split('/')[3]
     $.ajax({
@@ -49,6 +58,7 @@ $(document).ready(function() {
   });
 })
 
+// Give users to delete a poll.
 $('.delete_btn').click(function() {
   var id = this.id;
   $.ajax({
@@ -64,6 +74,7 @@ $('.delete_btn').click(function() {
   });
 })
 
+// Copy URL to clipboard in-order for users to share a specific poll.
 $('.share_btn').click(function() {
   var urlText = document.createElement("textarea");
   urlText.style.background = 'transparent';

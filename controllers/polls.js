@@ -1,5 +1,6 @@
 const Poll = require('../models/poll')
 
+// Get all polls from DB
 exports.getMyPolls = (req, res, next) => {
   Poll.find({}, (err, polls) => {
     if (err)
@@ -8,13 +9,13 @@ exports.getMyPolls = (req, res, next) => {
     res.render('mypolls', {polls})
   })
 }
-
+// Create new poll
 exports.addNewPoll = (req, res, next) => {
-  const {title, option} = req.body
+  const { title, ...allOptions } = req.body
   const options = {}
-  for (let key in option) {
-    options[option[key]] = 0;
-  }
+  for (let key in allOptions) {
+    options[allOptions[key]] = 0;
+   }
   const newUserPoll = new Poll({title, options, user: 'Unknown User', voters: []})
   newUserPoll.save(err => {
     if (err)
@@ -31,7 +32,7 @@ exports.getNewPollForm = (req, res, next) => {
 exports.getIndex = (req, res, next) => {
   res.render('index')
 }
-
+// Display the poll to be taken.
 exports.getVotingForm = (req, res, next) => {
   const {id} = req.params
   Poll.findById(req.params.id, function(err, poll) {
@@ -41,7 +42,7 @@ exports.getVotingForm = (req, res, next) => {
     res.render('takepoll', {title, options, id})
   })
 }
-
+// Update a polls votes in the DB and display the chart after the user has voted.
 exports.updatePoll = (req, res, next) => {
   const {choice} = req.body;
   const {id} = req.params
@@ -97,7 +98,7 @@ exports.updatePoll = (req, res, next) => {
       res.render('chart', {type, data, chart_options, id})
     });
   }
-
+// Delete a poll. Only logged in users can do this.
   exports.deletePoll = (req, res, next) => {
     const test = req.param;
     res.end('success');
@@ -107,7 +108,7 @@ exports.updatePoll = (req, res, next) => {
       res.end('success');
     });
   }
-
+// Get a poll to be edited.
   exports.getSinglePoll = (req, res, next) => {
     const {id} = req.params
     Poll.findById(req.params.id, function(err, poll) {
@@ -117,7 +118,7 @@ exports.updatePoll = (req, res, next) => {
       res.render('editpoll', {title, options, id})
     })
   }
-
+// Edit poll after user has made changes.
   exports.editPoll = (req, res, next) => {
     let {new_option} = req.body;
     const id = req.params.id;

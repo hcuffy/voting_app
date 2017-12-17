@@ -11,7 +11,6 @@ const UserSchema = new Schema({
   password: String
 }, { timestamps: true });
 
-// On Save Hook, encrypt password
 UserSchema.pre('save', function(next) {
   const user = this;
 

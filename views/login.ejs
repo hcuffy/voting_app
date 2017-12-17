@@ -21,6 +21,9 @@
         <input type="password" placeholder="Password" name="password">
       </div>
       <button type="submit">Login</button>
+      <% if (error) { %>
+        <h2 class="loginErrMsg"><%= error %></h2>
+      <% } %>
     </form>
   </div>
   <div class="form_elements">

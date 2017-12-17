@@ -13,20 +13,24 @@ exports.getSignUpForm = (req, res, next) => {
 exports.getLogin = (req, res, next) => {
   res.render('login')
 }
-
+// Create a new user after checking if user already exists.
 exports.createNewUser = (req, res, next) => {
-  const {username, password} = req.body
-  // TODO: Check if user exists first and then create the account.
-  const newUser = new User({username, password})
-  newUser.save(function(err) {
-    if (err)
-      return next(err)
-    req.login(newUser, (err) => {
-      if (err)
-        return next(err)
-      res.redirect('/polls/mypolls')
+  const { username, password } = req.body
+
+  User.findOne({ username }, (err, user) => {
+    if (err) return next(err);
+    if (user) {
+      return res.render('login', { error: 'This username already exists.' })
+    }
+    const newUser = new User({username, password})
+    newUser.save(function(err) {
+      if (err) return next(err);
+      req.login(newUser, (err) => {
+        if (err) return next(err);
+        res.redirect('/polls/mypolls');
+      })
     })
-  })
+  });
 }
 
 exports.getLogout = (req, res, next) => {

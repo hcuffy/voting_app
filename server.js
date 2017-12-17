@@ -10,7 +10,7 @@ const app = express();
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/henry-voting', {
   useMongoClient: true
-})
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -23,15 +23,9 @@ app.use(session({secret: 'voteonitagainagain', saveUninitialized: true, resave: 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('*', function(req, res, next) {
+app.use('*', function(req, res, next) {
   res.locals.user = req.user || null;
-
-  next();
-
-});
-
-app.get('*', function(req, res, next) {
-  res.locals.user = req.user || null;
+  res.locals.error = null;
   next();
 });
 

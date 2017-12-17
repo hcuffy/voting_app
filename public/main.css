@@ -216,3 +216,8 @@ hr {
   border: none;
   width: 110px;
 }
+
+.loginErrMsg {
+  color: red;
+  font-size: 14px;
+}
