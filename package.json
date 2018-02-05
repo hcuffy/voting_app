@@ -4,7 +4,7 @@
   "description": "Free Code Camp Voting App",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.js"
   },
   "author": "Henry Cuffy & Stephen Mayeux",
   "license": "MIT",
