@@ -10,12 +10,14 @@ router.get('/login', usersController.getLogin);
 router.get('/logout', usersController.getLogout);
 router.get('/signup', usersController.getSignUpForm);
 router.post('/signup', usersController.createNewUser);
-router.get('/profile', usersController.getProfile)
-router.post('/signin', passport.authenticate('local', {
-  successRedirect: '/polls/mypolls',
-  failureRedirect: '/users/login'
-
-}));
+router.get('/profile', usersController.getProfile);
+router.post(
+	'/signin',
+	passport.authenticate('local', {
+		successRedirect: '/polls/mypolls',
+		failureRedirect: '/users/login'
+	})
+);
 router.get('/polls/mypolls', pollsController.getMyPolls);
 
-module.exports = router
+module.exports = router;

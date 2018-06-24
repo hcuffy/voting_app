@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Profile</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-  <link href="/main.css" rel="stylesheet" type="text/css">
-</head>
-<nav>
-  <% if (user) { %>
-    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
-    <% } %>
+  <head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <nav>
+    <% if (user) { %>
+      <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+      <% } %>
 
-      <p>VOTE ON IT</p>
-      <span class="glyphicon glyphicon-user"> Profile</span>
+        <p>VOTE ON IT</p>
+        <span class="glyphicon glyphicon-user"> Profile</span>
 
-</nav>
+  </nav>
 
-<body style="background-color: #4286f4">
+  <body style="background-color: #4286f4">
 
-  <div style="text-align : center">
-    <p>
-      <strong>Name</strong>:<br>
+    <div style="text-align : center">
+      <p>
+        <strong>Name</strong>:<br>
 
-    </p>
-    <a href="/users/login" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
-  </div>
-</body>
+      </p>
+      <a href="/users/login" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+    </div>
+  </body>
 
 </html>

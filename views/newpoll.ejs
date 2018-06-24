@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-  <link href="/main.css" rel="stylesheet" type="text/css">
-</head>
-<nav>
-  <% if (user) { %>
-    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
-    <% } %>
-      <p style="margin-left : 8px">VOTE ON IT</p>
-</nav>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <nav>
+    <% if (user) { %>
+      <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+      <% } %>
+        <p style="margin-left : 8px">VOTE ON IT</p>
+  </nav>
 
-<body>
+  <body>
 
-  <div class="dashboard">
-    <h1>DASHBOARD</h1>
-    <p1>Either create a new poll or check your polls</p1>
-    <a href="/polls/mypolls" class="a_border"><button class="btn_blue" type="button">Go to Polls</button></a>
-  </div>
-  <div style="text-align : center">
-    <h2>Create A New Poll</h2>
-    <h3>Question:</h3>
-    <form action="/polls/newpoll/" method="post">
-      <input type="text" placeholder="Which pet do you prefer?" name="title" required>
-      <h3>Choices:</h3>
-      <div id="options">
-        <input class="poll-option" type="text" placeholder="A Dog" name="option1" required>
-        <input class="poll-option" type="text" placeholder="A Cat" name="option2" required>
-      </div>
-      <button type="submit" id="submit_btn">Submit</button>
-      <button type="button" class="choice_btn">New Option</button>
-    </form>
+    <div class="dashboard">
+      <h1>DASHBOARD</h1>
+      <p1>Either create a new poll or check your polls</p1>
+      <a href="/polls/mypolls" class="a_border"><button class="btn_blue" type="button">Go to Polls</button></a>
+    </div>
+    <div style="text-align : center">
+      <h2>Create A New Poll</h2>
+      <h3>Question:</h3>
+      <form action="/polls/newpoll/" method="post">
+        <input type="text" placeholder="Which pet do you prefer?" name="title" required>
+        <h3>Choices:</h3>
+        <div id="options">
+          <input class="poll-option" type="text" placeholder="A Dog" name="option1" required>
+          <input class="poll-option" type="text" placeholder="A Cat" name="option2" required>
+        </div>
+        <button type="submit" id="submit_btn">Submit</button>
+        <button type="button" class="choice_btn">New Option</button>
+      </form>
 
-  </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/main.js"></script>
-</body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
 
 </html>

@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-  <link href="/main.css" rel="stylesheet" type="text/css">
-</head>
-<nav>
-  <% if (user) { %>
-    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
-    <% } %>
-      <p style="margin-left : 8px">VOTE ON IT</p>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <nav>
+    <% if (user) { %>
+      <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+      <% } %>
+        <p style="margin-left : 8px">VOTE ON IT</p>
 
-</nav>
+  </nav>
 
-<body>
-  <div class="dashboard">
-    <h3>Please Vote</h3>
-    <h1><%= title %></h1>
-  </div>
-  <div style="margin: 0 auto; width: 300px;">
-    <form action="/polls/takepoll/<%= id %>" method="post">
-      <% for (var key in options) { %>
-        <label for="<%= key %>"><input type="radio" name="choice" value="<%= key %>" /> <%= key %></label>
-        <% } %>
-          <button type="submit" id="vote_btn">Vote</button>
-    </form>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <% if (!fresh_made) { %>
-  <button class="edit_btn">Edit Poll</button>
-  <% } %>
-  <button class="share_btn">Copy & Share <span class="glyphicon glyphicon-share"></span></button>
-  <script type="text/javascript" src="/main.js"></script>
-</body>
+  <body>
+    <div class="dashboard">
+      <h3>Please Vote</h3>
+      <h1><%= title %></h1>
+    </div>
+    <div style="margin: 0 auto; width: 300px;">
+      <form action="/polls/takepoll/<%= id %>" method="post">
+        <% for (var key in options) { %>
+          <label for="<%= key %>"><input type="radio" name="choice" value="<%= key %>" /> <%= key %></label>
+          <% } %>
+            <button type="submit" id="vote_btn">Vote</button>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <% if (!fresh_made) { %>
+      <button class="edit_btn">Edit Poll</button>
+      <% } %>
+        <button class="share_btn">Copy & Share <span class="glyphicon glyphicon-share"></span></button>
+        <script type="text/javascript" src="/main.js"></script>
+  </body>
 
 </html>

@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>My Polls</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-  <link href="/main.css" rel="stylesheet" type="text/css">
-</head>
-<nav>
-  <% if(user){ %>
-    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
-    <% } %>
-      <p style="margin-left : 8px">VOTE ON IT</p>
-</nav>
-
-<body>
-  <div class="dashboard">
-    <h1>DASHBOARD</h1>
-    <% if (user) { %>
-      <a href="/polls/newpoll" class="a_border"><button class="btn_green" type="button">+ New Poll</button></a>
+  <head>
+    <title>My Polls</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <nav>
+    <% if(user){ %>
+      <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
       <% } %>
-  </div>
-  <div style="margin: 0 auto; width: 455px; position:relative;">
-    <h3>Select a Poll</h3>
-    <% for (var i = 0; i < polls.length; i++) { %>
-      <a href="/polls/vote/<%= polls[i]._id %>"><button class="mypolls">
+        <p style="margin-left : 8px">VOTE ON IT</p>
+  </nav>
+
+  <body>
+    <div class="dashboard">
+      <h1>DASHBOARD</h1>
+      <% if (user) { %>
+        <a href="/polls/newpoll" class="a_border"><button class="btn_green" type="button">+ New Poll</button></a>
+        <% } %>
+    </div>
+    <div style="margin: 0 auto; width: 455px; position:relative;">
+      <h3>Select a Poll</h3>
+      <% for (var i = 0; i < polls.length; i++) { %>
+        <a href="/polls/vote/<%= polls[i]._id %>"><button class="mypolls">
           <%= polls[i].title %>
     </button></a>
-      <% if (user) { %>
-        <button id='<%= polls[i]._id %>' class="delete_btn">Delete</button>
-        <% } %>
+        <% if (user) { %>
+          <button id='<%= polls[i]._id %>' class="delete_btn">Delete</button>
           <% } %>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/main.js"></script>
-</body>
+            <% } %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
 
 </html>

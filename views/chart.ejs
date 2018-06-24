@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-  <link href="/main.css" rel="stylesheet" type="text/css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-</head>
-<nav>
-  <% if(user){ %>
-    <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
-  <% } %>
-  <p style="margin-left : 8px">VOTE ON IT</p>
-</nav>
+  </head>
+  <nav>
+    <% if(user){ %>
+      <a class="log_out" href="/users/logout"><span class="glyphicon glyphicon-log-out"></span></a>
+      <% } %>
+        <p style="margin-left : 8px">VOTE ON IT</p>
+  </nav>
 
-<body>
-  <div class="dashboard">
-    <h3>Current Vote Results For:</h3>
-  </div>
-  <div style="margin: 0 auto; width: 600px; background: white;">
-    <canvas id="myChart" width="400" height="400"></canvas>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: <%- JSON.stringify(type) %>,
-        data: <%- JSON.stringify(data) %>,
-        options: <%- JSON.stringify(chart_options) %>
-      });
-    </script>
-  </div>
-  <a href="/polls/mypolls"><button id="chart_back" class="back_btn" type="button">Back to Polls</button></a>
-</body>
+  <body>
+    <div class="dashboard">
+      <h3>Current Vote Results For:</h3>
+    </div>
+    <div style="margin: 0 auto; width: 600px; background: white;">
+      <canvas id="myChart" width="400" height="400"></canvas>
+      <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+          type: <%- JSON.stringify(type) %>,
+          data: <%- JSON.stringify(data) %>,
+          options: <%- JSON.stringify(chart_options) %>
+        });
+
+      </script>
+    </div>
+    <a href="/polls/mypolls"><button id="chart_back" class="back_btn" type="button">Back to Polls</button></a>
+  </body>
 
 </html>
